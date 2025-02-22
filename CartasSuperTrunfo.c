@@ -6,17 +6,56 @@
 // Siga os comentários para implementar cada parte do desafio.
 //Teste larissa
 
+void readAndShowCard(int cardNumber) {
+    char tempState;
+    printf("Digite o estado (A a H): ");
+    scanf(" %c", &tempState);
+    char state = tempState;
+
+    char code[3];
+    printf("Digite o código: ");
+    scanf("%s", code);
+
+    char cityName[20];
+    printf("Digite o nome da cidade: ");
+    scanf("%s", cityName);
+
+    int population;
+    printf("Digite a população: ");
+    scanf("%i", &population);
+
+    float area;
+    printf("Digite a Área (em km²): ");
+    scanf(" %f", &area);
+
+    float PIB;
+    printf("Digite o PIB: ");
+    scanf(" %f", &PIB);
+
+    int touristAttractions;
+    printf("Digite a quantidade de pontos turisticos: ");
+    scanf("%i", &touristAttractions);
+
+    printf("=========================== \n");
+    printf("Carta %i: \n", cardNumber);
+    printf("Estado: %c\n", state);
+    printf("Código: %s\n", code);
+    printf("Nome da Cidade: %s\n", cityName);
+    printf("População: %d\n", population);
+    printf("Área: %.2f km²\n", area);
+    printf("PIB: %.2f bilhões de reais\n", PIB);
+    printf("Número de Pontos Turísticos: %d\n", touristAttractions);
+    printf("=========================== \n");
+}
+
 int main() {
-    // Sugestão: Defina variáveis separadas para cada atributo da cidade.
-    // Exemplos de atributos: código da cidade, nome, população, área, PIB, número de pontos turísticos.
-    
-    // Cadastro das Cartas:
-    // Sugestão: Utilize a função scanf para capturar as entradas do usuário para cada atributo.
-    // Solicite ao usuário que insira as informações de cada cidade, como o código, nome, população, área, etc.
-    
-    // Exibição dos Dados das Cartas:
-    // Sugestão: Utilize a função printf para exibir as informações das cartas cadastradas de forma clara e organizada.
-    // Exiba os valores inseridos para cada atributo da cidade, um por linha.
+    printf("Digite os dados da primeira carta: \n");
+    readAndShowCard(1);
+
+    printf("\n\n\n");
+
+    printf("Digite os dados da segunda carta: \n");
+    readAndShowCard(2);
 
     return 0;
 }
