@@ -36,6 +36,9 @@ void readAndShowCard(int cardNumber) {
     printf("Digite a quantidade de pontos turisticos: ");
     scanf("%i", &touristAttractions);
 
+    float populationDensity = (float) population / area;
+    float PIBPerCapt = (float) (PIB * 1e9) / population;
+
     printf("=========================== \n");
     printf("Carta %i: \n", cardNumber);
     printf("Estado: %c\n", state);
@@ -45,6 +48,8 @@ void readAndShowCard(int cardNumber) {
     printf("Área: %.2f km²\n", area);
     printf("PIB: %.2f bilhões de reais\n", PIB);
     printf("Número de Pontos Turísticos: %d\n", touristAttractions);
+    printf("Densidade Populacional: %.2f hab/km²\n", populationDensity);
+    printf("PIB per Capita: %.2f reais\n", PIBPerCapt);
     printf("=========================== \n");
 }
 
