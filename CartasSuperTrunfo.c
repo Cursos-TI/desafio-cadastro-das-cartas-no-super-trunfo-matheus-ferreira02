@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdbool.h>
 
 // Desafio Super Trunfo - Países
 // Tema 1 - Cadastro das Cartas
@@ -71,6 +72,16 @@ void readAndShowCard(int cardNumber, char *state, char *code, char *cityName,
 //     printf("Super Poder: Carta %d venceu (%d)\n", power1 > power2 ? 1 : 2, power1 > power2);
 // }
 
+void printOptions() {
+    printf("\n===========================\n");
+    printf("1.População\n");
+    printf("2.Área\n");
+    printf("3.PIB\n");
+    printf("4.Número de pontos turísticos\n");
+    printf("5.Densidade demográfica\n");
+    printf("===========================\n");
+}
+
 int main() {
     // Declaração das variáveis para as duas cartas
     char state1[3], state2[3];
@@ -97,29 +108,34 @@ int main() {
     //              touristAttractions1, touristAttractions2, density1, density2, 
     //              PIBCap1, PIBCap2, superPower1, superPower2);
 
-    // if (population1 > population2) {
-    //     printf("Resultado: Carta 1 (%s) venceu!", cityName1);
-    // } else {
-    //     printf("Resultado: Carta 2 (%s) venceu!", cityName2);
-    // }
+    bool isSameOption = true;
+    int opcao1, opcao2;
+        
+    while (isSameOption) {
+        printf("Escolha o primeiro atributo para comparar\n");
+        printOptions();
+        scanf("%d", &opcao1);
 
-    printf("\n===========================\n");
-    printf("Escolha um dos atributos para comparar:\n");
-    printf("1.População\n");
-    printf("2.Área\n");
-    printf("3.PIB\n");
-    printf("4.Número de pontos turísticos\n");
-    printf("5.Densidade demográfica\n");
+        printf("-------------------------\n");
+
+        printf("Escolha o segundo atributo atributo para comparar\n");
+        printOptions();
+        scanf("%d", &opcao2);
+
+        if (opcao1 != opcao2) {
+            isSameOption = false;
+        } else {
+            printf("Não é possível escolher o mesmo atributo, escolha outro\n");
+        }
+    }
+
     printf("===========================\n");
 
-    int opcao;
-    scanf("%d", &opcao);
-
-    printf("===========================\n");
+    double sumFirstCard = 0, sumSecondCard = 0;
 
     printf("Cidade 1: %s - Cidade 2: %s\n", cityName1, cityName2);
 
-    switch (opcao) {
+    switch (opcao1) {
         case 1:
             printf("Atributo escolhido: População\n");
             printf("%lu da carta 1 - %lu da carta 2\n", population1, population2);
@@ -130,6 +146,9 @@ int main() {
             } else {
                 printf("Empate!\n");
             }
+
+            sumFirstCard += population1;
+            sumSecondCard += population2;
             break;
         case 2:
             printf("Atributo escolhido: Área\n");
@@ -141,6 +160,10 @@ int main() {
             } else {
                 printf("Empate!");
             }
+
+            sumFirstCard += area1;
+            sumSecondCard += area2;
+
             break;
         case 3:
             printf("Atributo escolhido: PIB\n");
@@ -152,6 +175,8 @@ int main() {
             } else {
                 printf("Empate!");
             }
+            sumFirstCard += PIB1;
+            sumSecondCard += PIB2;
             break;
         case 4:
             printf("Atributo escolhido: Pontos turísticos\n");
@@ -163,6 +188,8 @@ int main() {
             } else {
                 printf("Empate!");
             }
+            sumFirstCard += touristAttractions1;
+            sumSecondCard += touristAttractions2;
             break;
         case 5:
             printf("Atributo escolhido: Densidade demográfica\n");
@@ -174,10 +201,99 @@ int main() {
             } else {
                 printf("Empate!");
             }
+            sumFirstCard += density1;
+            sumSecondCard += density2;
             break;
         default:
             printf("Opção inválida");
     }
+
+    printf("-----------------------\n");
+
+    switch (opcao2) {
+        case 1:
+            printf("Atributo escolhido: População\n");
+            printf("%lu da carta 1 - %lu da carta 2\n", population1, population2);
+            if (population1 > population2) {
+                printf("Resultado: Carta 1 (%s) venceu!\n", cityName1);
+            } else if (population1 < population2){
+                printf("Resultado: Carta 2 (%s) venceu!\n", cityName2);
+            } else {
+                printf("Empate!\n");
+            }
+
+            sumFirstCard += population1;
+            sumSecondCard += population2;
+            break;
+        case 2:
+            printf("Atributo escolhido: Área\n");
+            printf("%.2f km² da carta 1 - %.2f km² da carta 2\n", area1, area2);
+            if (area1 > area2) {
+                printf("Resultado: Carta 1 (%s) venceu!\n", cityName1);
+            } else if (area1 < area2){
+                printf("Resultado: Carta 2 (%s) venceu!\n", cityName2);
+            } else {
+                printf("Empate!");
+            }
+
+            sumFirstCard += area1;
+            sumSecondCard += area2;
+
+            break;
+        case 3:
+            printf("Atributo escolhido: PIB\n");
+            printf("%.2f da carta 1 - %.2f da carta 2\n", PIB1, PIB2);
+            if (PIB1 > PIB2) {
+                printf("Resultado: Carta 1 (%s) venceu!\n", cityName1);
+            } else if (PIB1 < PIB2){
+                printf("Resultado: Carta 2 (%s) venceu!\n", cityName2);
+            } else {
+                printf("Empate!");
+            }
+            sumFirstCard += PIB1;
+            sumSecondCard += PIB2;
+            break;
+        case 4:
+            printf("Atributo escolhido: Pontos turísticos\n");
+            printf("%d da carta 1 - %d da carta 2\n", touristAttractions1, touristAttractions2);
+            if (touristAttractions1 > touristAttractions2) {
+                printf("Resultado: Carta 1 (%s) venceu!\n", cityName1);
+            } else if (touristAttractions1 < touristAttractions2){
+                printf("Resultado: Carta 2 (%s) venceu!\n", cityName2);
+            } else {
+                printf("Empate!");
+            }
+            sumFirstCard += touristAttractions1;
+            sumSecondCard += touristAttractions2;
+            break;
+        case 5:
+            printf("Atributo escolhido: Densidade demográfica\n");
+            printf("%.2f hab/km² da carta 1 - %.2f hab/km² da carta 2\n", density1, density2);
+            if (density1 < density2) {
+                printf("Resultado: Carta 1 (%s) venceu!\n", cityName1);
+            } else if (density1 > density2){
+                printf("Resultado: Carta 2 (%s) venceu!\n", cityName2);
+            } else {
+                printf("Empate!");
+            }
+            sumFirstCard += density1;
+            sumSecondCard += density2;
+            break;
+        default:
+            printf("Opção inválida");
+    }
+
+    printf("-----------------------\n");
+    printf("Soma total da Carta 1: %.2lf\n", sumFirstCard);
+    printf("Soma total da Carta 2: %.2lf\n", sumSecondCard);
+    printf("-----------------------\n");
+
+    printf(
+        (sumFirstCard > sumSecondCard) ? "Carta 1 venceu com a soma dos atributos: %.2lf\n" :
+        (sumFirstCard < sumSecondCard) ? "Carta 2 venceu com a soma dos atributos: %.2lf\n" :
+        "Empate!\n", 
+        (sumFirstCard > sumSecondCard) ? sumFirstCard : (sumFirstCard < sumSecondCard) ? sumSecondCard : 0
+    );
 
     return 0;
 }
